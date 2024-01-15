@@ -1918,3 +1918,17 @@ section {
 .footer .credits a {
   color: #fff;
 }
+
+.image-container {
+  display: flex; /* Membuat container menjadi flex container */
+}
+
+.img-fluid {
+  width: 100%; /* Gambar akan memiliki lebar 100% dari parent container */
+  height: auto; /* Mempertahankan aspek ratio gambar */
+  margin-right: 10px;
+}
+
+.img-fluid:last-child {
+  margin-right: 0;
+}
