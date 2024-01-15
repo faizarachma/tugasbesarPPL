@@ -1919,6 +1919,7 @@ section {
   color: #fff;
 }
 
+<<<<<<< HEAD
 .image-container {
   display: flex; /* Membuat container menjadi flex container */
 }
@@ -1932,3 +1933,6 @@ section {
 .img-fluid:last-child {
   margin-right: 0;
 }
+=======
+
+>>>>>>> 9d9712cb0c7a49728afc1c35d32a10c82639fc30
