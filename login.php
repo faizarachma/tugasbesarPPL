@@ -6,8 +6,8 @@ $email = $_POST['email'];
 $password = $_POST['password'];
 
 try {
-    // Query untuk memeriksa data pengguna
-    $query = "SELECT * FROM users WHERE email = '$email'";
+    // Query untuk memeriksa keberadaan email
+    $query = "SELECT id FROM users WHERE email = '$email'";
     $result = $conn->query($query);
 
     // Periksa apakah query dieksekusi dengan benar
@@ -15,25 +15,18 @@ try {
         throw new Exception("Query error: " . $conn->error);
     }
 
-    // Periksa apakah pengguna ditemukan
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $hashedPassword = $row['password'];
+    $row = $result->fetch_assoc();
 
-        // Periksa apakah kata sandi cocok
-        if (password_verify($password, $hashedPassword)) {
-            // Otentikasi berhasil, atur sesi atau tindakan lain yang diperlukan
-            session_start();
-            $_SESSION['user_id'] = $row['id'];
-            // Redirect ke halaman lain setelah login berhasil
-            header('Location: form.html');
-            exit();
-        } else {
-            // Password tidak cocok, beri tahu pengguna
-            echo "Password tidak benar";
-        }
+    // Periksa apakah email ditemukan
+    if ($row) {
+        // Email ditemukan, atur sesi atau tindakan lain yang diperlukan
+        session_start();
+        $_SESSION['user_id'] = $row['id'];
+        // Redirect ke halaman lain setelah login berhasil
+        header('Location: assets/adminpage');
+        exit();
     } else {
-        // Pengguna tidak ditemukan, beri tahu pengguna
+        // Tampilkan pesan kesalahan
         echo "Email tidak terdaftar";
     }
 } catch (Exception $e) {
@@ -43,4 +36,3 @@ try {
 
 // Tutup koneksi database
 $conn->close();
-?>
