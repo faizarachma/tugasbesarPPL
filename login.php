@@ -23,7 +23,7 @@ try {
         session_start();
         $_SESSION['user_id'] = $row['id'];
         // Redirect ke halaman lain setelah login berhasil
-        header('Location: assets/adminpage');
+        header('Location: form');
         exit();
     } else {
         // Tampilkan pesan kesalahan
